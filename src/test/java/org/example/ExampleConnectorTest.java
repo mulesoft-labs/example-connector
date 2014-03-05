@@ -13,6 +13,9 @@ package org.example;
 import org.junit.Test;
 import org.mule.tck.junit4.FunctionalTestCase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ExampleConnectorTest extends FunctionalTestCase
 {
     @Override
@@ -24,6 +27,9 @@ public class ExampleConnectorTest extends FunctionalTestCase
     @Test
     public void testFlow() throws Exception
     {
+        Map<String,Object> author = new HashMap<String,Object>();
+        author.put("name","testAuthorName");
+        author.put("lastName","testAuthorLastName");
         runFlow("testFlow", new Author());
     }
 }

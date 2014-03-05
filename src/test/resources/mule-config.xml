@@ -12,7 +12,13 @@
     <example:config username="xxx" password="yyy"/>
 
     <flow name="testFlow">
-        <example:create entityType="Book_id" entityData-ref="#[payload]"/>
+        <example:create entityType="Author_id">
+            <example:entity-data>
+                <name>testAuthor</name>
+                <lastName>testAuthorLastName</lastName>
+            </example:entity-data>
+        </example:create>
+
     </flow>
 
 </mule>
