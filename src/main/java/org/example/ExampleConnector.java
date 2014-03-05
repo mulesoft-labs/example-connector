@@ -19,9 +19,12 @@ import org.mule.api.annotations.param.MetaDataKeyParam;
 import org.mule.api.annotations.param.Optional;
 import org.mule.common.metadata.*;
 import org.mule.common.metadata.builder.DefaultMetaDataBuilder;
+import org.mule.common.metadata.datatype.DataType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Example Connector for MetaData
@@ -38,6 +41,7 @@ public class ExampleConnector
 
         entities.add(new DefaultMetaDataKey("Book_id","Book"));
         entities.add(new DefaultMetaDataKey("Author_id","Author"));
+        entities.add(new DefaultMetaDataKey("BookList_id","BookList"));
 
         return entities;
     }
@@ -48,17 +52,27 @@ public class ExampleConnector
         //Here we describe the entity depending on the entity key
 
         if ("Author_id".equals(entityKey.getId())) {
-            MetaDataModel authorModel =  new DefaultMetaDataBuilder().createPojo(Author.class).build();
+            MetaDataModel authorModel =  new DefaultMetaDataBuilder().createDynamicObject("Author")
+                    .addSimpleField("firstName", DataType.STRING)
+                    .addSimpleField("lastName", DataType.STRING)
+                    .build();
             return new DefaultMetaData(authorModel);
         }
 
         if ("Book_id".equals(entityKey.getId())) {
-            MetaDataModel bookModel =  new DefaultMetaDataBuilder().createPojo(Book.class).build();
+            MetaDataModel bookModel =  new   DefaultMetaDataBuilder().createDynamicObject("Book")
+                    .addSimpleField("title",DataType.STRING)
+                    .addSimpleField("synopsis",DataType.STRING)
+                    .addDynamicObjectField("author")
+                    .addSimpleField("firstName",DataType.STRING)
+                    .addSimpleField("lastName",DataType.STRING)
+                    .endDynamicObject()
+                    .build();
             return new DefaultMetaData(bookModel);
         }
 
         if ("BookList_id".equals(entityKey.getId())) {
-            MetaDataModel bookListModel =  new DefaultMetaDataBuilder().createList().ofPojo(Book.class).build();
+            MetaDataModel bookListModel =  new DefaultMetaDataBuilder().createList().ofDynamicObject("book").build();
             return new DefaultMetaData(bookListModel);
         }
 
@@ -66,30 +80,32 @@ public class ExampleConnector
 
     }
 
-    @Processor
-    public Object create(@MetaDataKeyParam String entityType, @Optional @Default("#[payload]") Object entityData) {
 
-        if (entityData instanceof Book) {
-            return createBook((Book) entityData);
+    @Processor
+    public Map<String,Object> create(@MetaDataKeyParam String entityType, @Optional @Default("#[payload]") Map<String,Object> entityData) {
+
+        if ("Book_id".equals(entityType)) {
+            return createBook(entityData);
         }
 
-        if (entityData instanceof Author) {
-            return createAuthor((Author) entityData);
+        if ("Author_id".equals(entityType)) {
+            return createAuthor(entityData);
         }
 
         throw new RuntimeException("Entity not recognized");
 
     }
 
-    private Object createAuthor(Author entityData) {
-        //CODE FOR CREATING NEW AUTHOR GOES HERE
+    private Map<String, Object> createAuthor(Map<String, Object> entityData) {
+        //CODE TO CREATE BOOK GOES HERE
         return null;
     }
 
-    private Object createBook(Book entityData) {
-        //CODE FOR CREATING A NEW BOOK GOES HERE
+    private Map<String, Object> createBook(Map<String, Object> entityData) {
+        //CODE TO CREATE AUTHOR GOES HERE
         return null;
     }
+
 
     /**
      * Connect
