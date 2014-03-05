@@ -11,10 +11,13 @@
 package org.example;
 
 import org.junit.Test;
+import org.mule.api.MuleEvent;
 import org.mule.tck.junit4.FunctionalTestCase;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static junit.framework.Assert.assertEquals;
 
 public class ExampleConnectorTest extends FunctionalTestCase
 {
@@ -27,9 +30,8 @@ public class ExampleConnectorTest extends FunctionalTestCase
     @Test
     public void testFlow() throws Exception
     {
-        Map<String,Object> author = new HashMap<String,Object>();
-        author.put("name","testAuthorName");
-        author.put("lastName","testAuthorLastName");
-        runFlow("testFlow", new Author());
+        MuleEvent event = runFlow("testFlow", null);
+        assertEquals(((Map) event.getMessage().getPayload()).get("name"),"testAuthorName");
+        assertEquals(((Map) event.getMessage().getPayload()).get("lastName"),"testAuthorLastName");
     }
 }

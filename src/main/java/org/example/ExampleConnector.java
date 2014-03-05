@@ -98,12 +98,12 @@ public class ExampleConnector
 
     private Map<String, Object> createAuthor(Map<String, Object> entityData) {
         //CODE TO CREATE BOOK GOES HERE
-        return null;
+        return entityData;
     }
 
     private Map<String, Object> createBook(Map<String, Object> entityData) {
         //CODE TO CREATE AUTHOR GOES HERE
-        return null;
+        return entityData;
     }
 
 

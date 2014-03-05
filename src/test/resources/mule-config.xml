@@ -14,7 +14,7 @@
     <flow name="testFlow">
         <example:create entityType="Author_id">
             <example:entity-data>
-                <name>testAuthor</name>
+                <name>testAuthorName</name>
                 <lastName>testAuthorLastName</lastName>
             </example:entity-data>
         </example:create>
