@@ -1,15 +1,22 @@
-
-Helloconnector
+Example Connector - static metadata
 =========================
 
-FILL IN DESCRIPTION
+This Anypoint Studio Connector is a simple example intended to help users understand DataSense configuration concepts. It is written to acompany the following documentation page: http://www.mulesoft.org/documentation/display/current/DevKit+Metadata+Implementation
 
-Installation and Usage
-----------------------
+This Connector in particular shows how to obtain meta data from a service with a static (strongly typed) data model. The service that the connector connects to is a book database, it contains two elements: 
+*books 
+*authors
 
-For information about usage and installation you can check our documentation at http://mulesoft.github.com/hello-connector.
+The book element contains the following fields:
+*title
+*synopsis
+*author
+*firstName
+*lastName
 
-Reporting Issues
-----------------
+The author element contains the following fields:
+*firstName
+*lastName
 
-We use GitHub:Issues for tracking issues with this connector. You can report new issues at this link https://github.com/mulesoft/hello-connector/issues
+
+For information on how this connector is built and how to build your own, refer the following documentation page: http://www.mulesoft.org/documentation/display/current/DevKit+Metadata+Implementation
