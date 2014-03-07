@@ -1,3 +1,0 @@
-<!-- BEGIN_INCLUDE(hello:my-processor) -->
-    <hello:my-processor content="#[map-payload:content]" />
-<!-- END_INCLUDE(hello:my-processor) -->

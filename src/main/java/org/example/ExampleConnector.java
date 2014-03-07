@@ -38,6 +38,7 @@ public class ExampleConnector
 
         entities.add(new DefaultMetaDataKey("Book_id","Book"));
         entities.add(new DefaultMetaDataKey("Author_id","Author"));
+        entities.add(new DefaultMetaDataKey("BookList_id","BookList"));
 
         return entities;
     }
@@ -66,8 +67,17 @@ public class ExampleConnector
 
     }
 
+    /**
+     * Creates an entity on the book library service
+     *
+     * {@sample.xml ../../../doc/example-connector.xml.sample example:create}
+     *
+     * @param entityType type of the entity
+     * @param entityData data of the entity
+     * @return the entity created
+     */
     @Processor
-    public Object create(@MetaDataKeyParam String entityType, @Optional @Default("#[payload]") Object entityData) {
+    public Object create(@MetaDataKeyParam String entityType, @Default("#[payload]") Object entityData) {
 
         if (entityData instanceof Book) {
             return createBook((Book) entityData);
