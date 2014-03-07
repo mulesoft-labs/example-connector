@@ -80,9 +80,17 @@ public class ExampleConnector
 
     }
 
-
+    /**
+     * Creates an entity on the book library service
+     *
+     * {@sample.xml ../../../doc/example-connector.xml.sample example:create}
+     *
+     * @param entityType type of the entity
+     * @param entityData data of the entity
+     * @return the entity created
+     */
     @Processor
-    public Map<String,Object> create(@MetaDataKeyParam String entityType, @Optional @Default("#[payload]") Map<String,Object> entityData) {
+    public Map<String,Object> create(@MetaDataKeyParam String entityType, @Default("#[payload]") Map<String,Object> entityData) {
 
         if ("Book_id".equals(entityType)) {
             return createBook(entityData);
