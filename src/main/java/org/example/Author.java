@@ -13,15 +13,15 @@ package org.example;
  * Author Pojo
  */
 public class Author {
-    String name;
+    String firstName;
     String lastName;
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
