@@ -12,7 +12,7 @@
     <example:config username="xxx" password="yyy"/>
 
     <flow name="testFlow">
-        <example:create entityType="Book_id" entityData-ref="#[payload]"/>
+        <example:query query="S firstName F Author"/>
     </flow>
 
 </mule>

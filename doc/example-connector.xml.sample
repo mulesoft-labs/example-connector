@@ -1,3 +1,3 @@
-<!-- BEGIN_INCLUDE(example:create) -->
-    <example:create entityType="Book_id" entity-data-ref="#[payload]"/>
-<!-- END_INCLUDE(example:create) -->
+<!-- BEGIN_INCLUDE(example:query) -->
+    <example:query query="S firstName F Author_id""/>
+<!-- END_INCLUDE(example:query) -->

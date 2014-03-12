@@ -14,11 +14,9 @@ import org.mule.api.annotations.*;
 import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.param.ConnectionKey;
 import org.mule.api.ConnectionException;
-import org.mule.api.annotations.param.Default;
-import org.mule.api.annotations.param.MetaDataKeyParam;
-import org.mule.api.annotations.param.Optional;
 import org.mule.common.metadata.*;
 import org.mule.common.metadata.builder.DefaultMetaDataBuilder;
+import org.mule.common.query.DsqlQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,25 +68,22 @@ public class ExampleConnector
     /**
      * Creates an entity on the book library service
      *
-     * {@sample.xml ../../../doc/example-connector.xml.sample example:create}
+     * {@sample.xml ../../../doc/example-connector.xml.sample example:query}
      *
-     * @param entityType type of the entity
-     * @param entityData data of the entity
-     * @return the entity created
+     * @param query The query on native (service) language.
+     * @return the query result
      */
     @Processor
-    public Object create(@MetaDataKeyParam String entityType, @Default("#[payload]") Object entityData) {
+    public List<Object> query(@Query String query) {
+        //CODE FOR EXECUTING THE SERVICE QUERY GOES HERE
+        throw new RuntimeException("Query operation isn't defined");
+    }
 
-        if (entityData instanceof Book) {
-            return createBook((Book) entityData);
-        }
-
-        if (entityData instanceof Author) {
-            return createAuthor((Author) entityData);
-        }
-
-        throw new RuntimeException("Entity not recognized");
-
+    @QueryTranslator
+    public String translate(DsqlQuery queryToTranslate) {
+        SimpleSyntaxVisitor simpleVisitor = new SimpleSyntaxVisitor();
+        queryToTranslate.accept(simpleVisitor);
+        return simpleVisitor.toSimpleQuery();
     }
 
     private Object createAuthor(Author entityData) {
