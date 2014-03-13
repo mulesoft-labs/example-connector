@@ -76,7 +76,7 @@ public class ExampleConnector
     @Processor
     public List<Object> query(@Query String query) {
         //CODE FOR EXECUTING THE SERVICE QUERY GOES HERE
-        throw new RuntimeException("Query operation isn't defined");
+        throw new RuntimeException("Query operation isn't defined yet. Translated query is: " + query);
     }
 
     @QueryTranslator
