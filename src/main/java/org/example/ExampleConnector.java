@@ -31,7 +31,7 @@ import java.util.Map;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name="example", schemaVersion="1.0-SNAPSHOT")
+@Connector(name="example", friendlyName = "Example", schemaVersion="1.0-SNAPSHOT")
 public class ExampleConnector
 {
     @MetaDataKeyRetriever
