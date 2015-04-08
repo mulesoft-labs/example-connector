@@ -3,16 +3,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mule.docs</groupId>
-    <artifactId>docs-example-connectors</artifactId>
+    <artifactId>basic-dsql</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>Example Connector Parent</name>
+    <packaging>mule-module</packaging>
+    <name>Dsql Connector</name>
 
-    <modules>
-        <module>static-metadata-example</module>
-        <module>dynamic-metadata-example</module>
-        <module>basic-dsql</module>
-    </modules>
+    <parent>
+        <groupId>org.mule.tools.devkit</groupId>
+        <artifactId>mule-devkit-parent</artifactId>
+        <version>3.6.1</version>
+    </parent>
+
+    <properties>
+        <junit.version>4.9</junit.version>
+        <mockito.version>1.8.2</mockito.version>
+        <jdk.version>1.6</jdk.version>
+        <category>Community</category>
+        <licensePath>LICENSE.md</licensePath>
+        <devkit.studio.package.skip>false</devkit.studio.package.skip>
+    </properties>
 
     <scm>
         <connection>scm:git:git://github.com:mulesoft/hello-connector.git</connection>
